@@ -1,16 +1,33 @@
-var Tag = require('../models/Tag').Tag
+let Tag = require('../models/Tag').Tag
 
-function addTag(req,res){
-
+const handleErr = (err)=>{
+  res.send(err);
 }
-function removeTag(req,res){
 
+const addTag = (req,res)=>{
+  var newTag = new Tag(req.body);
+  newTag.save((err,tag )=> {
+    if (err) return handleErr(err)
+    res.send(tag.name + ' Tag Added')
+  });
 }
-function updateTag(req,res){
-
+const removeTag = (req,res)=>{
+  Tag.findOneAndDelete(req.body.id, (err,tag)=>{
+    if (err) return handleErr(err);
+    res.send('Removed Tag ' + tag.name)
+  )
 }
-function getTags(req,res){
-
+const updateTag (req,res)=>{
+  Tag.findOneAndUpdate(req.body.id, (err,tag)=>{
+    if (err) return handleErr(err);
+    res.send('Updated Tag ' + tag.name)
+  })
+}
+const getTags(req,res)=>{
+  Tag.find(req.body.filter, (err,tags)=>{
+    if (err) return handleErr(err);
+    res.send(tags);
+  })
 }
 
 module.exports = {
