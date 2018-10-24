@@ -6,9 +6,10 @@ class App extends Component {
   state = {
     response: ''
   };
+
   componentDidMount() {
     this.callApi()
-      .then(res => this.setState({ response: res.express }))
+      .then(res => this.setState({ response: res }))
       .catch(err => console.log(err));
   }
   callApi = async () => {
@@ -25,7 +26,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        <p className="App-message">{this.state.response}</p>
+        <p className="App-message">{JSON.stringify(this.state.response)}</p>
       </div>
     );
   }

@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 
 require('dotenv').load();
 
-var indexRouter = require('./routes/index');
+// var indexRouter = require('./routes/index');
 var recipesRouter = require('./routes/recipes');
 var tagsRouter = require('./routes/tags');
 
@@ -26,9 +26,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/front-end/build')));
 
-app.use('/', indexRouter);
+// app.use('*', express.static('./front-end/public/index.html'));
 app.use('/api/recipes', recipesRouter);
 app.use('/api/tags', tagsRouter);
 
