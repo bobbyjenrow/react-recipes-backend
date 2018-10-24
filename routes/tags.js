@@ -3,9 +3,9 @@ var router = express.Router();
 var tags = require('../controllers/tags');
 
 /* GET users listing. */
-router.get('/', getAll(req,res,next));
-router.get('/:id', getOne(req,res,next));
-router.post('/create', recipes.create(req,res,next));
-router.delete('/:id', recipes.delete(req,res,next));
-router.patch('/:id',recipes.update(req,res,next));
+router.get('/', tags.getAll);
+router.get('/:id', tags.getOne);
+router.post('/create', tags.create);
+router.delete('/:id', tags.delete);
+router.patch('/:id', tags.update);
 module.exports = router;

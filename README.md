@@ -3,6 +3,6 @@ Built with Express!
 
 The api for the react-recipes app.
 
-TODO: Write CRUD operations for recipes.
+TODO: Test API -- CRUD Operations for Tags and Recipes working.
 
-TODO: Setup MongoDB and Mongoose Models.
+TODO: Add Auth.

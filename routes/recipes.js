@@ -3,9 +3,9 @@ var router = express.Router();
 var recipes = require('../controllers/recipes');
 
 /* GET users listing. */
-router.get('/', getAll(req,res,next));
-router.get('/:id', getOne(req,res,next));
-router.post('/create', recipes.create(req,res,next));
-router.delete('/:id', recipes.delete(req,res,next));
-router.patch('/:id',recipes.update(req,res,next));
+router.get('/', recipes.getAll);
+router.get('/:id', recipes.getOne);
+router.post('/create', recipes.create);
+router.delete('/:id', recipes.delete);
+router.patch('/:id',recipes.update);
 module.exports = router;

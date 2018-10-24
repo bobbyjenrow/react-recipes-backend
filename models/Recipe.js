@@ -1,7 +1,6 @@
 var mongoose = require('mongoose')
 
 // SubSchemas
-var TagSchema = require('tag').TagSchema
 
 var StepSchema = new mongoose.Schema({
   order: Number,
@@ -19,8 +18,9 @@ var RecipeSchema = new mongoose.Schema({
   subtitle: String,
   body: String,
   steps: [StepSchema],
-  ingredients: [IngredientSchema]
-  tags: [TagSchema]
+  ingredients: [IngredientSchema],
+  tags: [String],
+  rating: Number
 })
 
 // Generate Model
