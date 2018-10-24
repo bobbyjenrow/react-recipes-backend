@@ -9,10 +9,12 @@ require('dotenv').load();
 
 var indexRouter = require('./routes/index');
 var recipesRouter = require('./routes/recipes');
+var tagsRouter = require('./routes/tags');
 
 var app = express();
 
 mongoose.connect(process.env.MONGO_URL);
+mongoose.connection.on('error', (err)=>{return next(err)})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/recipes', recipesRouter);
+app.use('/api/tags', recipesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

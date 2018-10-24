@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var recipes = require('../controllers/recipes');
+var tags = require('../controllers/tags');
 
 /* GET users listing. */
 router.get('/', getAll(req,res,next));

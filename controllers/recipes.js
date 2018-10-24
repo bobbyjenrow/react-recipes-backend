@@ -1,38 +1,33 @@
 let Recipe = require('../models/Recipe').Recipe
 
-const handleErr = (err)=>{
-  res.send(err);
-}
-
-const addRecipe = (req,res)=>{
+exports.create = (req,res,next)=>{
   var newRecipe = new Recipe(req.body);
   newRecipe.save((err,recipe )=> {
-    if (err) return handleErr(err)
-    res.send(recipe.name + ' Recipe Added')
+    if (err) return next(err)
+    else res.send(recipe.name + ' Recipe Added')
   });
 }
-const removeRecipe = (req,res)=>{
-  Recipe.findOneAndDelete(req.body.id, (err,recipe)=>{
-    if (err) return handleErr(err);
-    res.send('Removed Recipe ' + recipe.name)
+exports.delete = (req,res,next)=>{
+  Recipe.findByIdAndDelete(req.params.id, (err,recipe)=>{
+    if (err) return next(err);
+    else res.send('Removed Recipe ' + recipe.name)
   )
 }
-const updateRecipe (req,res)=>{
-  Recipe.findOneAndUpdate(req.body.id, (err,recipe)=>{
-    if (err) return handleErr(err);
-    res.send('Updated Recipe ' + recipe.name)
+exports.update (req,res,next)=>{
+  Recipe.findByIdAndUpdate(req.params.id, (err,recipe)=>{
+    if (err) return next(err);
+    else res.send('Updated Recipe ' + recipe.name)
   })
 }
-const getRecipes(req,res)=>{
+exports.getAll(req,res,next)=>{
   Recipe.find(req.body.filter, (err,recipes)=>{
-    if (err) return handleErr(err);
-    res.send(recipes);
+    if (err) return next(err);
+    else res.send(recipes);
   })
 }
-
-module.exports = {
-  addRecipe,
-  removeRecipe,
-  updateRecipe,
-  getRecipes
+exports.getOne(req,res,next)=>{
+  Recipe.findById(req.params.id, (err,recipes)=>{
+    if (err) return next(err);
+    else res.send(recipes);
+  })
 }
