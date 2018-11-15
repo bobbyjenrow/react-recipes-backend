@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 
 // SubSchemas
 
-var StepSchema = new mongoose.Schema({
+var InstructionSchema = new mongoose.Schema({
   order: Number,
   content: String
 })
@@ -17,7 +17,8 @@ var RecipeSchema = new mongoose.Schema({
   name: String,
   subtitle: String,
   body: String,
-  steps: [StepSchema],
+  image: Buffer,
+  instructions: [InstructionSchema],
   ingredients: [IngredientSchema],
   tags: [String],
   rating: Number

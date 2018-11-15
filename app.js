@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
+var cors = require('cors');
 require('dotenv').load();
 
 // var indexRouter = require('./routes/index');
@@ -21,12 +21,13 @@ mongoose.connection.on('error', (err)=>{return next(err)})
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors())
 app.use(logger(process.env.NODE_ENV));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/front-end/build')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // app.use('*', express.static('./front-end/public/index.html'));
 app.use('/api/recipes', recipesRouter);
