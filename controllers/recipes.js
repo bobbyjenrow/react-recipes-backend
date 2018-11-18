@@ -1,13 +1,15 @@
 let Recipe = require('../models/Recipe').Recipe
 
+var request = require('request-promise')
+
 exports.create = (req,res,next)=>{
-  var newRecipe = new Recipe(req.body);
-  console.log(req.body)
+  const id = Math.floor(Math.random(21) * 200);
+  const data = `https://source.unsplash.com/collection/251966/${id}`;
+  var newRecipe = new Recipe({...req.body, imageUrl: data});
   newRecipe.save((err,recipe )=> {
     if (err) return next(err)
     else res.send((recipe.name ? recipe.name : '') + ' Recipe Added')
-  });
-}
+})}
 exports.delete = (req,res,next)=>{
   Recipe.findByIdAndDelete(req.params.id, (err,recipe)=>{
     if (err) return next(err);

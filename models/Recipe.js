@@ -8,16 +8,15 @@ var InstructionSchema = new mongoose.Schema({
 })
 var IngredientSchema = new mongoose.Schema({
   name: String,
-  amount: Number,
-  units: String // TODO: Add enum to units
+  amount: String
 })
 
 // Main Schema
 var RecipeSchema = new mongoose.Schema({
   name: String,
   subtitle: String,
-  body: String,
-  image: Buffer,
+  description: String,
+  imageUrl: String,
   instructions: [InstructionSchema],
   ingredients: [IngredientSchema],
   tags: [String],
