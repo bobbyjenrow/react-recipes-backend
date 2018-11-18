@@ -14,7 +14,7 @@ var tagsRouter = require('./routes/tags');
 
 var app = express();
 
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true});
 mongoose.connection.on('error', (err)=>{return next(err)})
 
 // view engine setup
